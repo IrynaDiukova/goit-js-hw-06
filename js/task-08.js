@@ -1,22 +1,14 @@
 const formRef = document.querySelector('.login-form');
 
-  const formData = {}
-
-formRef.addEventListener('submit', onFormSubmit)
-
-function onFormSubmit(event){
+formRef.addEventListener('submit', (event) =>{
     event.preventDefault();
-
-    const formElements = event.currentTarget.elements;
-    const mail = formElements.email.value;
-    const password = formElements.password.value;
-
-    if (!mail|| !password) {
+    const {elements: { email, password }} = event.currentTarget;
+   
+    if (email.value === "" || password.value === "") {
         alert("Все поля дожны быть заполены!");
-      }
+      } else {
+        console.log({"email": email.value, "password": password.value});
 
-    event.currentTarget.reset();
-  
-    console.log({"email": mail, "password": password});
-}
-
+      formRef.reset();
+      }   
+});
